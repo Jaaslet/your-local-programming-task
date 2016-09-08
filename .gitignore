@@ -1,2 +1,3 @@
 *.swp
 server/data/journal/*
+server/data/local.*
