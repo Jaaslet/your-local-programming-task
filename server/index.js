@@ -5,7 +5,7 @@ var assert = require('assert');
 var app = express();
 var db_url = "mongodb://localhost:27017/data";
 
-function get_data(id_start,id_end,callback) {
+function get_data(id_start,id_end,callback) { //gets data from database and returns it
   MongoClient.connect(db_url, function(err, db) {
     assert.equal(null, err);
     var collection = db.collection('episodes');
