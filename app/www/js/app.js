@@ -22,3 +22,16 @@ angular.module('starter', ['ionic'])
     }
   });
 })
+
+.controller('frontPageController', function($scope, $http) {
+  $scope.episodes = "";
+  $http.get('http://localhost:3000/')
+    .success(function(response) {
+      //$scope.episodes = response;
+  });
+  //TEST DATA
+  /*$scope.episodes = [
+    {name:"Space Pilot 3000", image:{medium:"http://tvmazecdn.com/uploads/images/medium_landscape/57/143950.jpg"}, premiered:"1999-03-28"},
+    {name:"The Series Has Landed", image:{medium:"http://tvmazecdn.com/uploads/images/medium_landscape/57/143951.jpg"}, premiered:"1999-04-06"}
+  ];*/
+})
