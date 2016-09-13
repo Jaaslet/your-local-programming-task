@@ -30,7 +30,7 @@
       </ion-header-bar>
       <ion-content>
         <ion-list>
-          <ion-item ng-repeat="episode in episodes" href='episode.html?id=1'>
+          <ion-item ng-repeat="episode in episodes" href='episode.html?id={{episode.id}}'>
             <img ng-src="{{episode.image.medium}}"/><br><b>{{episode.name}}</b> {{episode.airdate}}
           </ion-item>
         </ion-list>

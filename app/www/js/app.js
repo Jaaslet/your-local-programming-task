@@ -40,7 +40,7 @@ angular.module('starter', ['ionic'])
       {id:3, name:"I, Roommate", image:{medium:"http://tvmazecdn.com/uploads/images/medium_landscape/57/143952.jpg"}, airdate:"1999-04-06", season:1, number:3, airtime:"22:00"},
       {id:4, name:"Love's Labors Lost in Space", image:{medium:"http://tvmazecdn.com/uploads/images/medium_landscape/57/143953.jpg"}, airdate:"1999-04-13", season:1, number:4, airtime:"22:00"}
     ];*/
-  $http.get('http://localhost:3000/')
+  $http.get('http://localhost:3000/') //fetches data from the database
     .success(function(response) {
       this.episodes = response;
   });
@@ -52,5 +52,5 @@ angular.module('starter', ['ionic'])
 
 .controller('episodePageController', function($scope, dataService, $stateParams) {
   var id = $stateParams.id;
-  $scope.episode = dataService.episodes.filter(function(object){return object.id==id})[0];
+  $scope.episode = dataService.episodes.filter(function(object){return object.id==id})[0]; //finds the episode with the right id
 })
