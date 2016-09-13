@@ -33,15 +33,16 @@ angular.module('starter', ['ionic'])
 })
 
 .service('dataService', function($http) {
-  this.episodes = [
-      {id:1, name:"Space Pilot 3000", image:{medium:"http://tvmazecdn.com/uploads/images/medium_landscape/57/143950.jpg"}, airdate:"1999-03-28"},
-      {id:2, name:"The Series Has Landed", image:{medium:"http://tvmazecdn.com/uploads/images/medium_landscape/57/143951.jpg"}, airdate:"1999-04-04"},
-      {id:3, name:"I, Roommate", image:{medium:"http://tvmazecdn.com/uploads/images/medium_landscape/57/143952.jpg"}, airdate:"1999-04-06"},
-      {id:4, name:"Love's Labors Lost in Space", image:{medium:"http://tvmazecdn.com/uploads/images/medium_landscape/57/143953.jpg"}, premiered:"1999-04-13"}
-    ];
+  //TEST DATA
+  /*this.episodes = [
+      {id:1, name:"Space Pilot 3000", image:{medium:"http://tvmazecdn.com/uploads/images/medium_landscape/57/143950.jpg"}, airdate:"1999-03-28", season:1, number:1, airtime:"22:00"},
+      {id:2, name:"The Series Has Landed", image:{medium:"http://tvmazecdn.com/uploads/images/medium_landscape/57/143951.jpg"}, airdate:"1999-04-04", season:1, number:2, airtime:"22:00"},
+      {id:3, name:"I, Roommate", image:{medium:"http://tvmazecdn.com/uploads/images/medium_landscape/57/143952.jpg"}, airdate:"1999-04-06", season:1, number:3, airtime:"22:00"},
+      {id:4, name:"Love's Labors Lost in Space", image:{medium:"http://tvmazecdn.com/uploads/images/medium_landscape/57/143953.jpg"}, airdate:"1999-04-13", season:1, number:4, airtime:"22:00"}
+    ];*/
   $http.get('http://localhost:3000/')
     .success(function(response) {
-      //this.episodes = response;
+      this.episodes = response;
   });
 })
 
@@ -50,6 +51,6 @@ angular.module('starter', ['ionic'])
 })
 
 .controller('episodePageController', function($scope, dataService, $stateParams) {
-  var id = /*$starteParams.id*/1;
+  var id = $stateParams.id;
   $scope.episode = dataService.episodes.filter(function(object){return object.id==id})[0];
 })
