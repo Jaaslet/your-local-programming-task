@@ -23,15 +23,33 @@ angular.module('starter', ['ionic'])
   });
 })
 
-.controller('frontPageController', function($scope, $http) {
-  $scope.episodes = "";
+.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+  .state('episode', {
+    url: 'episode.html',
+    templateUrl: 'episode.html',
+    controller: 'episodePageController'
+  })
+})
+
+.service('dataService', function($http) {
+  this.episodes = [
+      {id:1, name:"Space Pilot 3000", image:{medium:"http://tvmazecdn.com/uploads/images/medium_landscape/57/143950.jpg"}, airdate:"1999-03-28"},
+      {id:2, name:"The Series Has Landed", image:{medium:"http://tvmazecdn.com/uploads/images/medium_landscape/57/143951.jpg"}, airdate:"1999-04-04"},
+      {id:3, name:"I, Roommate", image:{medium:"http://tvmazecdn.com/uploads/images/medium_landscape/57/143952.jpg"}, airdate:"1999-04-06"},
+      {id:4, name:"Love's Labors Lost in Space", image:{medium:"http://tvmazecdn.com/uploads/images/medium_landscape/57/143953.jpg"}, premiered:"1999-04-13"}
+    ];
   $http.get('http://localhost:3000/')
     .success(function(response) {
-      //$scope.episodes = response;
+      //this.episodes = response;
   });
-  //TEST DATA
-  /*$scope.episodes = [
-    {name:"Space Pilot 3000", image:{medium:"http://tvmazecdn.com/uploads/images/medium_landscape/57/143950.jpg"}, premiered:"1999-03-28"},
-    {name:"The Series Has Landed", image:{medium:"http://tvmazecdn.com/uploads/images/medium_landscape/57/143951.jpg"}, premiered:"1999-04-06"}
-  ];*/
+})
+
+.controller('frontPageController', function($scope, $state, dataService) {
+  $scope.episodes = dataService.episodes;
+})
+
+.controller('episodePageController', function($scope, dataService, $stateParams) {
+  var id = /*$starteParams.id*/1;
+  $scope.episode = dataService.episodes.filter(function(object){return object.id==id})[0];
 })
